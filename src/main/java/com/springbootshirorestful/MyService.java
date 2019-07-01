@@ -1,27 +1,32 @@
 package com.springbootshirorestful;
 
 import com.alibaba.fastjson.JSON;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class MyService {
     @Resource
-    private MyDao myDao ;
+    private MyDao myDao;
 
-    @Cacheable(value = "studentCache")
-    public String getStudent(int id){
-        Student student = myDao.getStudent(id);
-        return JSON.toJSONString(student);
+
+    public String getStudent(int pageNum,int pageSize) {
+        List<Student> studentList = myDao.temp(MyUtil.calculatePageTotal(pageNum,pageSize),pageSize);
+        return JSON.toJSONString(studentList);
     }
 
-    @CacheEvict(value = "studentCache")
-    public String removeStudent(int id){
-        return "88777";
+    public String getStudent02() {
+        List<Student> studentList = null;
+        try {
+            studentList = ObjectMapping.mapToEntity(myDao.temp02(), Student.class);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return JSON.toJSONString(studentList);
     }
+
 
 }

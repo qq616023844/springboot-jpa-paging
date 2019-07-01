@@ -10,17 +10,25 @@ import javax.persistence.*;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id",unique = true,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "password")
+    private String password;
 
     public Student() {
     }
 
     public Student(String name) {
         this.name = name;
+    }
+
+    public Student(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     public int getId() {
@@ -37,5 +45,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

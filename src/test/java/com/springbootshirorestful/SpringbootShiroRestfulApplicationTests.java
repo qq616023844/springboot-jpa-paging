@@ -16,14 +16,18 @@ public class SpringbootShiroRestfulApplicationTests {
 
     @Test
     public void contextLoads() {
-        String demo1 = myService.getStudent(1,3);
+      /*  String demo1 = myService.getStudent(1,3);
         System.out.println("------------------------demo1输出-----------------------");
         System.out.println(demo1);
-        System.out.println("------------------------demo1输出结束-----------------------");
-        String demo2 = myService.getStudent02();
+        System.out.println("------------------------demo1输出结束-----------------------");*/
+        /*String demo2 = myService.getStudent02();
         System.out.println("------------------------demo2输出-----------------------");
         System.out.println(demo2);
-        System.out.println("------------------------demo2输出结束-----------------------");
+        System.out.println("------------------------demo2输出结束-----------------------");*/
+        String demo3 = myService.getStudent03();
+        System.out.println("------------------------demo3输出-----------------------");
+        System.out.println(demo3);
+        System.out.println("------------------------demo3输出结束-----------------------");
     }
 
 

@@ -28,5 +28,11 @@ public class MyService {
         return JSON.toJSONString(studentList);
     }
 
+    public String getStudent03() {
+        List<Student> studentList = myDao.temp03();
+        return JSON.toJSONString(studentList);
+    }
+
+
 
 }

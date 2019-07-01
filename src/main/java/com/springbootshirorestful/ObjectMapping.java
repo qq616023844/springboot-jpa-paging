@@ -28,7 +28,6 @@ public class ObjectMapping {
         Class superClass;
         Field[] fields;
         T target = targetClass.newInstance();
-        System.out.println(JSON.toJSONString(target));
         //接收targetClass的Field
         List<Field> targetfieldList = new LinkedList<>();
 

@@ -13,8 +13,12 @@ public interface MyDao extends JpaRepository<Student, Integer> {
             nativeQuery = true)
     List<Student> temp(int pageOffset, int pageSize);
 
-    //TODO 查询部分字段的demo
+    //TODO 查询部分字段的demo-sql
     @Query(value = " SELECT sa.name FROM student sa ",
         nativeQuery = true)
     List<Map<String,Object>> temp02();
+
+    //TODO 查询部分字段的demo-hql
+    @Query(value = " SELECT new Student(s.name) FROM Student s")
+    List<Student> temp03();
 }

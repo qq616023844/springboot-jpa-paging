@@ -14,7 +14,10 @@ import java.util.Map;
  * */
 public class ObjectMapping {
     /**将map转换为实体类,在jpa查询部分字段时会用到
-     * 使用的时候注意,因为int类型会初始化的问题,无法被FASTJSON忽略掉,所以返回的json可能会带有额外的数字0*/
+     * 使用的时候注意,因为int类型会初始化的问题,无法被FASTJSON忽略掉,所以返回的json可能会带有额外的数字0
+     * 由于是通过属性名来匹配,所以如果数据库字段名和参数名不一致,会导致部分字段映射不到实体,应该这么写
+     * *@Query(value = " select id,bar_code01 barCode01,bar_code02 barCode02,bar_code03 barCode03,name,comment from library_good ",nativeQuery=true)
+     * 在查询时取别名,将其跟类的属性名一致 */
     public static <T>List<T> mapToEntity(List<Map<String,Object>> mapList,Class<T> targetClass) throws InstantiationException, IllegalAccessException {
         List<T> targetList = new LinkedList<>();
         for (Map<String, Object> map : mapList) {
@@ -23,7 +26,10 @@ public class ObjectMapping {
         return targetList;
     }
     /**将map转换为实体类,在jpa查询部分字段时会用到
-     * 使用的时候注意,因为int类型会初始化的问题,无法被FASTJSON忽略掉,所以返回的json可能会带有额外的数字0*/
+     * 使用的时候注意,因为int类型会初始化的问题,无法被FASTJSON忽略掉,所以返回的json可能会带有额外的数字0
+     * 由于是通过属性名来匹配,所以如果数据库字段名和参数名不一致,会导致部分字段映射不到实体,应该这么写
+     * *@Query(value = " select id,bar_code01 barCode01,bar_code02 barCode02,bar_code03 barCode03,name,comment from library_good ",nativeQuery=true)
+     * 在查询时取别名,将其跟类的属性名一致 */
     public static <T>T mapToEntity(Map<String,Object> map,Class<T> targetClass) throws IllegalAccessException, InstantiationException {
         Class superClass;
         Field[] fields;
